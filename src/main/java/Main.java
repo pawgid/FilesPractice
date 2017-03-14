@@ -9,9 +9,10 @@ public class Main {
 
         Scanner scanner = new Scanner(System.in);
 
-//        login(scanner);
-        DataService dataService = new DataService();
-        dataService.saveData();
+        login(scanner);
+//        DataService dataService = new DataService();
+//        User user = ;
+//        String xmlUser = ;
     }
 
     private static void login(Scanner scanner) {
@@ -23,10 +24,13 @@ public class Main {
         User user = new User(login, password);
 
         UserService userService = new UserService();
-        if (userService.authenticate(user)) {
-            System.out.println("Zalogowany");
-        } else {
-            System.out.println("Nieprawidlowe haslo");
+        boolean isLogin = false;
+        while (!isLogin) {
+            if (isLogin = userService.authenticate(user)) {
+                System.out.println("Zalogowany");
+            } else {
+                System.out.println("Nieprawidlowe haslo");
+            }
         }
     }
 }
