@@ -25,7 +25,7 @@ public class LoginController {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Hello world");
         alert.show();
         //1. Powolac do zycia user service
-        //2. Tworzenie uzytkownika z polami pobrany z fieldow
+        //2. Tworzenie uzytkownika z polami pobranymi z fieldow
         //3. Korzystamy z metody authenticate
         //4. Sprawdzenie czy haslo jest ok (if)
         //5. Nieprawidlowe haslo to alert (warning)
