@@ -30,8 +30,8 @@ public class DataServiceTest {
         company.setName("Biedronka");
         company.setAddress(new Address("ul. Cwiartki", "3", "4", "60-666", "Poznan", "Poland"));
         company.setNip("12345678");
-        company.setRegon("87654321");
-        company.setId("123");
+//        company.setRegon("87654321");
+//        company.setId("123");
     }
 
 

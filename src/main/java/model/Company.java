@@ -19,14 +19,14 @@ public class Company {
     public Company() {
     }
 
-    public String getId() {
-
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
+//    public String getId() {
+//
+//        return id;
+//    }
+//
+//    public void setId(String id) {
+//        this.id = id;
+//    }
 
     public Address getAddress() {
         return address;
@@ -44,13 +44,13 @@ public class Company {
         this.nip = nip;
     }
 
-    public String getRegon() {
-        return regon;
-    }
-
-    public void setRegon(String regon) {
-        this.regon = regon;
-    }
+//    public String getRegon() {
+//        return regon;
+//    }
+//
+//    public void setRegon(String regon) {
+//        this.regon = regon;
+//    }
 
     public String getName() {
         return name;
@@ -63,11 +63,9 @@ public class Company {
     @Override
     public String toString() {
         return "Company{" +
-                "id='" + id + '\'' +
-                ", nip='" + nip + '\'' +
-                ", regon='" + regon + '\'' +
                 ", name='" + name + '\'' +
                 ", address=" + address +
+                "nip='" + nip + '\'' +
                 '}';
     }
 }

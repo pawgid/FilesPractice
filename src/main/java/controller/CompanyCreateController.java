@@ -2,14 +2,16 @@ package controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.*;
 import model.Address;
 import model.Company;
+import pdf.PdfFactory;
+import service.DataService;
 
-public class CompanyCreateController {
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class CompanyCreateController extends Controller {
 
     @FXML
     private TextField streetField;
@@ -33,7 +35,7 @@ public class CompanyCreateController {
     private TextField nameField;
 
     @FXML
-    private TextField zipCodeField;
+    private TextField postalCodeField;
 
     @FXML
     private RadioButton avenueRadio;
@@ -75,12 +77,12 @@ public class CompanyCreateController {
         address.setCity(cityField.getText());
         address.setFlatNumber(flatNumberField.getText());
         address.setHouseNumber(houseNumberField.getText());
-        address.setPostalCode(zipCodeField.getText());
+        address.setPostalCode(postalCodeField.getText());
         address.setStreetName(streetField.getText());
         company.setAddress(address);
         company.setNip(nipField.getText());
-        System.out.println(company);
-
+        DataService dataService = new DataService();
+        dataService.printOutCompanyInfo(company);
     }
 
     @FXML
@@ -89,7 +91,41 @@ public class CompanyCreateController {
         streetRadio.setToggleGroup(group);
         squareRadio.setToggleGroup(group);
         avenueRadio.setToggleGroup(group);
+    }
 
+    private void validatePostalCode() {
+        Pattern zipPattern = Pattern.compile("(^\\d{2}-\\d{3}$)");
+        Matcher zipMatcher = zipPattern.matcher(postalCodeField.getText());
+        if (zipMatcher.find()) {
+            String zip = zipMatcher.group(1);
+            showConfirmationAlert("Wszystko OK");
+        } else {
+        showErrorAlert("Zle dane");
+        }
+    }
+
+
+    @FXML
+    void makePDFOnAction(ActionEvent event) {
+        Company company = new Company();
+        company.setName(nameField.getText());
+        Address address = new Address();
+        address.setCity(cityField.getText());
+        address.setFlatNumber(flatNumberField.getText());
+        address.setHouseNumber(houseNumberField.getText());
+        address.setPostalCode(postalCodeField.getText());
+        address.setStreetName(streetField.getText());
+        company.setAddress(address);
+        company.setNip(nipField.getText());
+        DataService dataService = new DataService();
+        dataService.printOutCompanyInfo(company);
+        PdfFactory pdfFactory = new PdfFactory();
+        pdfFactory.createPdfFromCompany(company);
+    }
+
+    @FXML
+    void validateOnAction(ActionEvent event) {
+        validatePostalCode();
     }
 }
 

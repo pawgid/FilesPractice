@@ -10,7 +10,10 @@ public class Address {
         streetPrefix(String prefix) {
             this.prefix = prefix;
         }
+
+
     }
+
 
     private String streetName;
     private String houseNumber;
